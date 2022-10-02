@@ -33,8 +33,9 @@ class ContactApiConfiguration(
         )
 
     private fun environment(): com.wutsi.platform.contact.Environment =
-        if (env.acceptsProfiles(Profiles.of("prod")))
+        if (env.acceptsProfiles(Profiles.of("prod"))) {
             PRODUCTION
-        else
+        } else {
             SANDBOX
+        }
 }

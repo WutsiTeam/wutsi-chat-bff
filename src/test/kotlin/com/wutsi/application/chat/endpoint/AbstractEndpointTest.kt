@@ -223,5 +223,4 @@ abstract class AbstractEndpointTest {
         displayName = "User $id",
         pictureUrl = "https://www.img.com/$id.png"
     )
-
 }

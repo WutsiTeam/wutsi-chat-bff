@@ -12,7 +12,6 @@ import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
-import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.SearchAccountRequest
 import com.wutsi.platform.chat.WutsiChatApi
@@ -49,7 +48,7 @@ class HomeScreen(
             request = SearchAccountRequest(
                 ids = recipientIds.toList(),
                 limit = recipientIds.size
-            ),
+            )
         ).accounts.associateBy { it.id }
 
         return Screen(
@@ -70,18 +69,23 @@ class HomeScreen(
                             val recipient =
                                 if (message.senderId == accountId) recipients[message.recipientId] else recipients[message.senderId]
 
-                            if (recipient != null)
+                            if (recipient != null) {
                                 ListItem(
                                     leading = Avatar(model = sharedUIMapper.toAccountModel(recipient), radius = 24.0),
-                                    trailing = toDateTimeWidget(message.timestamp),
+                                    trailing = Text(
+                                        caption = formatDateTime(message.timestamp),
+                                        size = Theme.TEXT_SIZE_SMALL,
+                                        color = Theme.COLOR_PRIMARY
+                                    ),
                                     caption = recipient.displayName ?: "",
                                     subCaption = message.text.take(50),
                                     action = gotoUrl(
                                         urlBuilder.build("messages?recipient-id=${recipient.id}")
                                     )
                                 )
-                            else
+                            } else {
                                 null
+                            }
                         }
                     )
                 )
@@ -90,18 +94,15 @@ class HomeScreen(
         ).toWidget()
     }
 
-    private fun toDateTimeWidget(timestamp: Long): WidgetAware? {
+    private fun formatDateTime(timestamp: Long): String {
         val dateTime = LocalDateTime.ofInstant(
-            Instant.ofEpochMilli(timestamp), TimeZone.getDefault().toZoneId()
+            Instant.ofEpochMilli(timestamp),
+            TimeZone.getDefault().toZoneId()
         )
-        return Text(
-            caption = if (dateTime.toLocalDate() == LocalDate.now())
-                dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
-            else
-                dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
-
-            size = Theme.TEXT_SIZE_SMALL,
-            color = Theme.COLOR_PRIMARY
-        )
+        return if (dateTime.toLocalDate() == LocalDate.now()) {
+            dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
+        } else {
+            dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+        }
     }
 }

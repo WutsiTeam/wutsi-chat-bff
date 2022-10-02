@@ -29,7 +29,7 @@ internal class FetchMessageControllerTest : AbstractEndpointTest() {
         val messages = listOf(
             createMessage("A", ACCOUNT_ID, 1, "Hello", 1000),
             createMessage("B", 1, ACCOUNT_ID, "How are you", 900),
-            createMessage("C", ACCOUNT_ID, 1, "I'm fine", 800),
+            createMessage("C", ACCOUNT_ID, 1, "I'm fine", 800)
         )
         doReturn(SearchMessageResponse(messages)).whenever(chatApi).searchMessages(any())
 

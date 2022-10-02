@@ -1,30 +1,32 @@
 {
-  "type" : "Screen",
-  "attributes" : {
-    "id" : "page.chat.message",
-    "safe" : false
+  "type": "Screen",
+  "attributes": {
+    "id": "page.chat.message",
+    "safe": false
   },
-  "children" : [ {
-    "type" : "Chat",
-    "attributes" : {
-      "userId" : "77777",
-      "roomId" : "11",
-      "sendMessageUrl" : "http://localhost:0/commands/send",
-      "fetchMessageUrl" : "http://localhost:0/messages/fetch?recipient-id=11",
-      "userFirstName" : "Ray",
-      "userLastName" : "Sponsible",
-      "userPictureUrl" : "http://img.com/1.png"
+  "children": [
+    {
+      "type": "Chat",
+      "attributes": {
+        "userId": "77777",
+        "roomId": "11",
+        "sendMessageUrl": "http://localhost:0/commands/send",
+        "fetchMessageUrl": "http://localhost:0/messages/fetch?recipient-id=11",
+        "userFirstName": "Ray",
+        "userLastName": "Sponsible",
+        "userPictureUrl": "http://img.com/77777.png"
+      },
+      "children": []
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Ray Sponsible",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
     },
-    "children" : [ ]
-  } ],
-  "appBar" : {
-    "type" : "AppBar",
-    "attributes" : {
-      "title" : "Ray Sponsible",
-      "elevation" : 0.0,
-      "backgroundColor" : "#FFFFFF",
-      "foregroundColor" : "#000000"
-    },
-    "children" : [ ]
+    "children": []
   }
 }
