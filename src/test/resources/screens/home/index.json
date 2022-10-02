@@ -1,0 +1,185 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.chat",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "Container",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Flexible",
+          "attributes": {
+            "flex": 1,
+            "fit": "Tight"
+          },
+          "children": [
+            {
+              "type": "ListView",
+              "attributes": {
+                "separator": true,
+                "separatorColor": "#8c8c8c"
+              },
+              "children": [
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "User 1",
+                    "subCaption": "Yo",
+                    "trailing": {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "31-12-1969",
+                        "color": "#1D7EDF",
+                        "size": 10.0
+                      },
+                      "children": []
+                    },
+                    "leading": {
+                      "type": "CircleAvatar",
+                      "attributes": {
+                        "radius": 24.0
+                      },
+                      "children": [
+                        {
+                          "type": "Image",
+                          "attributes": {
+                            "url": "https://www.img.com/1.png"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/messages?recipient-id=1"
+                  }
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "User 2",
+                    "subCaption": "Yo",
+                    "trailing": {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "31-12-1969",
+                        "color": "#1D7EDF",
+                        "size": 10.0
+                      },
+                      "children": []
+                    },
+                    "leading": {
+                      "type": "CircleAvatar",
+                      "attributes": {
+                        "radius": 24.0
+                      },
+                      "children": [
+                        {
+                          "type": "Image",
+                          "attributes": {
+                            "url": "https://www.img.com/2.png"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/messages?recipient-id=2"
+                  }
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "User 3",
+                    "subCaption": "Hello World",
+                    "trailing": {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "31-12-1969",
+                        "color": "#1D7EDF",
+                        "size": 10.0
+                      },
+                      "children": []
+                    },
+                    "leading": {
+                      "type": "CircleAvatar",
+                      "attributes": {
+                        "radius": 24.0
+                      },
+                      "children": [
+                        {
+                          "type": "Image",
+                          "attributes": {
+                            "url": "https://www.img.com/3.png"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/messages?recipient-id=3"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Messages",
+      "elevation": 0.0,
+      "backgroundColor": "#1D7EDF",
+      "foregroundColor": "#FFFFFF"
+    },
+    "children": []
+  },
+  "bottomNavigationBar": {
+    "type": "BottomNavigationBar",
+    "attributes": {
+      "background": "#1D7EDF",
+      "selectedItemColor": "#e4edf7",
+      "unselectedItemColor": "#FFFFFF"
+    },
+    "children": [
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "f107",
+          "caption": "Home"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "route:/~"
+        }
+      },
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "f27b",
+          "caption": "Me"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "https://wutsi-gateway-test.herokuapp.com/shell/profile"
+        }
+      }
+    ]
+  }
+}

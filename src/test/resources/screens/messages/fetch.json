@@ -1,0 +1,41 @@
+[
+  {
+    "id": "A",
+    "type": "text",
+    "createdAt": 1000,
+    "roomId": "1",
+    "text": "Hello",
+    "author": {
+      "id": "77777",
+      "firstName": "User",
+      "lastName": "77777",
+      "imageUrl": "https://www.img.com/77777.png"
+    }
+  },
+  {
+    "id": "B",
+    "type": "text",
+    "createdAt": 900,
+    "roomId": "1",
+    "text": "How are you",
+    "author": {
+      "id": "1",
+      "firstName": "User",
+      "lastName": "1",
+      "imageUrl": "https://www.img.com/1.png"
+    }
+  },
+  {
+    "id": "C",
+    "type": "text",
+    "createdAt": 800,
+    "roomId": "1",
+    "text": "I'm fine",
+    "author": {
+      "id": "77777",
+      "firstName": "User",
+      "lastName": "77777",
+      "imageUrl": "https://www.img.com/77777.png"
+    }
+  }
+]
