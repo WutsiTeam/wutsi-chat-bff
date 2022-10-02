@@ -11,6 +11,7 @@ import com.wutsi.platform.account.dto.Category
 import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.GetCategoryResponse
 import com.wutsi.platform.account.dto.Phone
+import com.wutsi.platform.account.entity.AccountStatus
 import com.wutsi.platform.chat.WutsiChatApi
 import com.wutsi.platform.core.security.SubjectType
 import com.wutsi.platform.core.security.SubjectType.USER
@@ -175,6 +176,7 @@ abstract class AbstractEndpointTest {
 
         rest.interceptors.add(SpringTracingRequestInterceptor(tracingContext))
         rest.interceptors.add(SpringAuthorizationRequestInterceptor(tokenProvider))
+        rest.interceptors.add(LanguageClientHttpRequestInterceptor())
         return rest
     }
 
@@ -218,9 +220,10 @@ abstract class AbstractEndpointTest {
         emptyMap()
     )
 
-    protected fun createAccountSummary(id: Long) = AccountSummary(
+    protected fun createAccountSummary(id: Long, status: AccountStatus = AccountStatus.ACTIVE) = AccountSummary(
         id = id,
         displayName = "User $id",
-        pictureUrl = "https://www.img.com/$id.png"
+        pictureUrl = "https://www.img.com/$id.png",
+        status = status.name
     )
 }

@@ -130,6 +130,58 @@
                     "type": "Route",
                     "url": "http://localhost:0/messages?recipient-id=3"
                   }
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "User 10",
+                    "leading": {
+                      "type": "CircleAvatar",
+                      "attributes": {
+                        "radius": 24.0
+                      },
+                      "children": [
+                        {
+                          "type": "Image",
+                          "attributes": {
+                            "url": "https://www.img.com/10.png"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/messages?recipient-id=10"
+                  }
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "User 20",
+                    "leading": {
+                      "type": "CircleAvatar",
+                      "attributes": {
+                        "radius": 24.0
+                      },
+                      "children": [
+                        {
+                          "type": "Image",
+                          "attributes": {
+                            "url": "https://www.img.com/20.png"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/messages?recipient-id=20"
+                  }
                 }
               ]
             }
@@ -152,7 +204,7 @@
     "type": "BottomNavigationBar",
     "attributes": {
       "background": "#1D7EDF",
-      "selectedItemColor": "#e4edf7",
+      "selectedItemColor": "#FFFFFF",
       "unselectedItemColor": "#FFFFFF"
     },
     "children": [
