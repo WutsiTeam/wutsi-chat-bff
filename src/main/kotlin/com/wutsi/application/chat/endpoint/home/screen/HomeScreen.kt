@@ -13,6 +13,7 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.platform.account.WutsiAccountApi
+import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.SearchAccountRequest
 import com.wutsi.platform.chat.WutsiChatApi
 import com.wutsi.platform.chat.dto.SearchConversationRequest
@@ -51,6 +52,7 @@ class HomeScreen(
             )
         ).accounts.associateBy { it.id }
 
+        val account = securityContext.currentAccount()
         return Screen(
             id = Page.CHAT,
             appBar = AppBar(
@@ -73,7 +75,7 @@ class HomeScreen(
                                 ListItem(
                                     leading = Avatar(model = sharedUIMapper.toAccountModel(recipient), radius = 24.0),
                                     trailing = Text(
-                                        caption = formatDateTime(message.timestamp),
+                                        caption = formatDateTime(message.timestamp, account),
                                         size = Theme.TEXT_SIZE_SMALL,
                                         color = Theme.COLOR_PRIMARY
                                     ),
@@ -94,10 +96,11 @@ class HomeScreen(
         ).toWidget()
     }
 
-    private fun formatDateTime(timestamp: Long): String {
+    private fun formatDateTime(timestamp: Long, account: Account): String {
+        val tz = account.timezoneId?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
         val dateTime = LocalDateTime.ofInstant(
             Instant.ofEpochMilli(timestamp),
-            TimeZone.getDefault().toZoneId()
+            tz.toZoneId()
         )
         return if (dateTime.toLocalDate() == LocalDate.now()) {
             dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
