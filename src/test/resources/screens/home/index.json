@@ -229,7 +229,7 @@
         "children": [],
         "action": {
           "type": "Route",
-          "url": "https://wutsi-gateway-test.herokuapp.com/shell/profile"
+          "url": "https://wutsi-shell-bff-test.herokuapp.com/profile"
         }
       }
     ]
