@@ -39,7 +39,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         val conversations = listOf(
             createConversation("1", ACCOUNT_ID, 1, "Yo"),
             createConversation("2", 2, ACCOUNT_ID, "Yo"),
-            createConversation("3", 3, ACCOUNT_ID, "Hello World"),
+            createConversation("3", 3, ACCOUNT_ID, "Hello\nWorld"),
             createConversation("99", 99, ACCOUNT_ID, "Hello World")
         )
         doReturn(SearchConversationResponse(conversations)).whenever(chatApi).searchConversations(any())

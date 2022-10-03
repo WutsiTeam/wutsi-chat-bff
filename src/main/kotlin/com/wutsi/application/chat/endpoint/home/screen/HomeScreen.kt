@@ -117,7 +117,7 @@ class HomeScreen(
                         color = Theme.COLOR_PRIMARY
                     ),
                     caption = recipient.displayName ?: "",
-                    subCaption = message.text.take(50),
+                    subCaption = message.text.replace('\n', ' ').take(30),
                     action = gotoUrl(
                         urlBuilder.build("messages?recipient-id=${recipient.id}")
                     )
