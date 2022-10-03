@@ -14,7 +14,15 @@
         "fetchMessageUrl": "http://localhost:0/messages/fetch?recipient-id=11",
         "userFirstName": "Ray",
         "userLastName": "Sponsible",
-        "userPictureUrl": "http://img.com/77777.png"
+        "userPictureUrl": "http://img.com/77777.png",
+        "language": "en",
+        "fontSize": 14.0,
+        "receivedMessageBackground": "#e8e8e8",
+        "receivedMessageTextColor": "#000000",
+        "sentMessageBackground": "#1D7EDF",
+        "sentMessageTextColor": "#FFFFFF",
+        "showUserNames": false,
+        "showUserAvatars": true
       },
       "children": []
     }
@@ -25,7 +33,20 @@
       "title": "Ray Sponsible",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
-      "foregroundColor": "#000000"
+      "foregroundColor": "#000000",
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "ef28"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "route:/~"
+          }
+        }
+      ]
     },
     "children": []
   }
