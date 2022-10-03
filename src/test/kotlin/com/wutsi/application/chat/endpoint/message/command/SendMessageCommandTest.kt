@@ -56,5 +56,4 @@ internal class SendMessageCommandTest : AbstractEndpointTest() {
         assertEquals(msg.roomId.toLong(), request.firstValue.recipientId)
         assertEquals(msg.text, request.firstValue.text)
     }
-
 }
