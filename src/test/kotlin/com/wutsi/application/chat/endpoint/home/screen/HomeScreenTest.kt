@@ -48,6 +48,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
             createContact(1),
             createContact(10),
             createContact(20),
+            createContact(30),
             createContact(999)
         )
         doReturn(SearchContactResponse(contact)).whenever(contactApi).searchContact(any())
@@ -57,8 +58,9 @@ internal class HomeScreenTest : AbstractEndpointTest() {
             createAccountSummary(1),
             createAccountSummary(2),
             createAccountSummary(3),
-            createAccountSummary(10),
-            createAccountSummary(20),
+            createAccountSummary(10, business = true),
+            createAccountSummary(20, business = true),
+            createAccountSummary(30, business = false),
             createAccountSummary(99, AccountStatus.SUSPENDED),
             createAccountSummary(999, AccountStatus.SUSPENDED)
         )

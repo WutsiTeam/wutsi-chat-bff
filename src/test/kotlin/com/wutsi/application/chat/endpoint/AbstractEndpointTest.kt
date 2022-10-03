@@ -220,10 +220,15 @@ abstract class AbstractEndpointTest {
         emptyMap()
     )
 
-    protected fun createAccountSummary(id: Long, status: AccountStatus = AccountStatus.ACTIVE) = AccountSummary(
+    protected fun createAccountSummary(
+        id: Long,
+        status: AccountStatus = AccountStatus.ACTIVE,
+        business: Boolean = false
+    ) = AccountSummary(
         id = id,
         displayName = "User $id",
         pictureUrl = "https://www.img.com/$id.png",
-        status = status.name
+        status = status.name,
+        business = business
     )
 }

@@ -131,7 +131,7 @@ class HomeScreen(
     private fun toContactListItems(contactIds: List<Long>, recipients: Map<Long, AccountSummary>): List<WidgetAware> {
         return contactIds.mapNotNull {
             val recipient = recipients[it]
-            if (recipient != null && recipient.status == "ACTIVE") {
+            if (recipient != null && recipient.status == "ACTIVE" && recipient.business) {
                 ListItem(
                     leading = Avatar(model = sharedUIMapper.toAccountModel(recipient), radius = 24.0),
                     caption = recipient.displayName ?: "",
