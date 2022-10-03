@@ -67,7 +67,6 @@ class HomeScreen(
         val recipients = accountApi.searchAccount(
             request = SearchAccountRequest(
                 ids = recipientIds.toList(),
-                business = true, // CHAT feature only for business account
                 limit = recipientIds.size
             )
         ).accounts.associateBy { it.id }
