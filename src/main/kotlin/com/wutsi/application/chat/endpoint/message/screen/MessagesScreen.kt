@@ -26,6 +26,7 @@ class MessagesScreen(
     fun index(@RequestParam(name = "recipient-id") recipientId: Long): Widget {
         val sender = securityContext.currentAccount()
         val recipient = accountApi.getAccount(recipientId).account
+        val roomId = listOf(sender.id, recipientId).sorted().joinToString(",")
         return Screen(
             id = Page.CHAT_MESSAGE,
             appBar = AppBar(
@@ -44,12 +45,12 @@ class MessagesScreen(
                 )
             ),
             child = Chat(
-                roomId = recipientId.toString(),
+                roomId = roomId,
                 userId = sender.id.toString(),
                 userFirstName = StringUtil.firstName(sender.displayName),
                 userLastName = StringUtil.lastName(sender.displayName),
                 userPictureUrl = sender.pictureUrl,
-                sendMessageUrl = "$serverUrl/commands/send",
+                sendMessageUrl = "$serverUrl/commands/send?recipient-id=$recipientId",
                 fetchMessageUrl = "$serverUrl/messages/fetch?recipient-id=$recipientId",
                 language = sender.language,
                 sentMessageBackground = Theme.COLOR_PRIMARY,

@@ -7,6 +7,7 @@ import com.wutsi.platform.chat.dto.SendMessageRequest
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -16,12 +17,14 @@ class SendMessageCommand(
 ) : AbstractCommand() {
     @PostMapping
     fun index(
+        @RequestParam(name = "recipient-id") recipientId: Long,
         @RequestBody msg: ChatMessageDto
     ) {
         chatApi.sendMessage(
             request = SendMessageRequest(
                 referenceId = msg.id,
-                recipientId = msg.roomId.toLong(),
+                recipientId = recipientId,
+                conversationId = msg.roomId,
                 text = msg.text,
                 timestamp = msg.createdAt
             )

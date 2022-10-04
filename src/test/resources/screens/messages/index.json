@@ -9,8 +9,8 @@
       "type": "Chat",
       "attributes": {
         "userId": "77777",
-        "roomId": "11",
-        "sendMessageUrl": "http://localhost:0/commands/send",
+        "roomId": "11,77777",
+        "sendMessageUrl": "http://localhost:0/commands/send?recipient-id=11",
         "fetchMessageUrl": "http://localhost:0/messages/fetch?recipient-id=11",
         "userFirstName": "Ray",
         "userLastName": "Sponsible",

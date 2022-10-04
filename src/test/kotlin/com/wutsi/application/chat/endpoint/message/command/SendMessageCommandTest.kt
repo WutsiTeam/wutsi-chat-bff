@@ -25,7 +25,7 @@ internal class SendMessageCommandTest : AbstractEndpointTest() {
     override fun setUp() {
         super.setUp()
 
-        url = "http://localhost:$port/commands/send"
+        url = "http://localhost:$port/commands/send?recipient-id=100"
     }
 
     @Test
@@ -37,7 +37,7 @@ internal class SendMessageCommandTest : AbstractEndpointTest() {
         val msg = ChatMessageDto(
             id = "1111",
             createdAt = 1111L,
-            roomId = "111",
+            roomId = "100,$ACCOUNT_ID",
             text = "Hello",
             author = ChatUserDto(
                 id = ACCOUNT_ID.toString(),
@@ -53,7 +53,8 @@ internal class SendMessageCommandTest : AbstractEndpointTest() {
 
         assertEquals(msg.id, request.firstValue.referenceId)
         assertEquals(msg.createdAt, request.firstValue.timestamp)
-        assertEquals(msg.roomId.toLong(), request.firstValue.recipientId)
+        assertEquals(100, request.firstValue.recipientId)
+        assertEquals(msg.roomId, request.firstValue.conversationId)
         assertEquals(msg.text, request.firstValue.text)
     }
 }
