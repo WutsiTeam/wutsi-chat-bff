@@ -12,21 +12,30 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.WutsiAccountApi
+import org.apache.commons.codec.digest.DigestUtils
+import org.springframework.core.env.Environment
+import org.springframework.core.env.Profiles
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.net.URL
 
 @RestController
 @RequestMapping("/messages")
 class MessagesScreen(
-    private val accountApi: WutsiAccountApi
+    private val accountApi: WutsiAccountApi,
+    private val env: Environment
 ) : AbstractQuery() {
     @PostMapping
     fun index(@RequestParam(name = "recipient-id") recipientId: Long): Widget {
         val sender = securityContext.currentAccount()
         val recipient = accountApi.getAccount(recipientId).account
-        val roomId = listOf(sender.id, recipientId).sorted().joinToString(",")
+        val roomId = DigestUtils.md5Hex(
+            listOf(sender.id, recipientId).sorted().joinToString(",")
+        )
+        val envUrl = getEnvironmentURL()
+
         return Screen(
             id = Page.CHAT_MESSAGE,
             appBar = AppBar(
@@ -52,6 +61,7 @@ class MessagesScreen(
                 userPictureUrl = sender.pictureUrl,
                 sendMessageUrl = "$serverUrl/commands/send?recipient-id=$recipientId",
                 fetchMessageUrl = "$serverUrl/messages/fetch?recipient-id=$recipientId",
+                rtmUrl = "wss://${envUrl.host}/rtm/$roomId",
                 language = sender.language,
                 sentMessageBackground = Theme.COLOR_PRIMARY,
                 sentMessageTextColor = Theme.COLOR_WHITE,
@@ -63,4 +73,11 @@ class MessagesScreen(
             )
         ).toWidget()
     }
+
+    private fun getEnvironmentURL(): URL =
+        if (env.acceptsProfiles(Profiles.of("prod"))) {
+            URL(com.wutsi.platform.chat.Environment.PRODUCTION.url)
+        } else {
+            URL(com.wutsi.platform.chat.Environment.SANDBOX.url)
+        }
 }
