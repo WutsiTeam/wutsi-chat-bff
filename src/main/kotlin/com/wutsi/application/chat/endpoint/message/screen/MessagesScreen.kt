@@ -58,7 +58,7 @@ class MessagesScreen(
                 userFirstName = StringUtil.firstName(sender.displayName),
                 userLastName = StringUtil.lastName(sender.displayName),
                 userPictureUrl = sender.pictureUrl,
-                userRecipientId = recipientId.toString(),
+                recipientUserId = recipientId.toString(),
                 fetchMessageUrl = "$serverUrl/messages/fetch?recipient-id=$recipientId",
                 rtmUrl = rtmUrl,
                 language = sender.language,
