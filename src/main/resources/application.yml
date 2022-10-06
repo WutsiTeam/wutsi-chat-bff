@@ -47,6 +47,8 @@ wutsi:
     news-url: https://wutsi-news-bff-${wutsi.application.env}.herokuapp.com
     shell-url: https://wutsi-shell-bff-${wutsi.application.env}.herokuapp.com
     store-url: https://wutsi-store-bff-${wutsi.application.env}.herokuapp.com
+  chat:
+    rtm-url: wss://wutsi-rtm-server-${wutsi.application.env}.herokuapp.com/rtm
   platform:
     cache:
       name: ${wutsi.application.name}

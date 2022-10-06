@@ -13,19 +13,19 @@ import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.WutsiAccountApi
 import org.apache.commons.codec.digest.DigestUtils
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.env.Environment
-import org.springframework.core.env.Profiles
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.net.URL
 
 @RestController
 @RequestMapping("/messages")
 class MessagesScreen(
     private val accountApi: WutsiAccountApi,
-    private val env: Environment
+    private val env: Environment,
+    @Value("\${wutsi.chat.rtm-url}") private val rtmUrl: String
 ) : AbstractQuery() {
     @PostMapping
     fun index(@RequestParam(name = "recipient-id") recipientId: Long): Widget {
@@ -34,7 +34,6 @@ class MessagesScreen(
         val roomId = DigestUtils.md5Hex(
             listOf(sender.id, recipientId).sorted().joinToString(",")
         )
-        val envUrl = getEnvironmentURL()
 
         return Screen(
             id = Page.CHAT_MESSAGE,
@@ -59,9 +58,9 @@ class MessagesScreen(
                 userFirstName = StringUtil.firstName(sender.displayName),
                 userLastName = StringUtil.lastName(sender.displayName),
                 userPictureUrl = sender.pictureUrl,
-                sendMessageUrl = "$serverUrl/commands/send?recipient-id=$recipientId",
+                userRecipientId = recipientId.toString(),
                 fetchMessageUrl = "$serverUrl/messages/fetch?recipient-id=$recipientId",
-                rtmUrl = "wss://${envUrl.host}/rtm/$roomId",
+                rtmUrl = rtmUrl,
                 language = sender.language,
                 sentMessageBackground = Theme.COLOR_PRIMARY,
                 sentMessageTextColor = Theme.COLOR_WHITE,
@@ -73,11 +72,4 @@ class MessagesScreen(
             )
         ).toWidget()
     }
-
-    private fun getEnvironmentURL(): URL =
-        if (env.acceptsProfiles(Profiles.of("prod"))) {
-            URL(com.wutsi.platform.chat.Environment.PRODUCTION.url)
-        } else {
-            URL(com.wutsi.platform.chat.Environment.SANDBOX.url)
-        }
 }
