@@ -21,13 +21,21 @@ class FetchMessageController(
     private val chatApi: WutsiChatApi,
     private val logger: KVLogger
 ) : AbstractQuery() {
+    companion object {
+        const val LIMIT = 100
+    }
+
     @PostMapping("/messages/fetch")
-    fun index(@RequestParam("recipient-id") recipientId: Long): List<ChatMessageDto> {
+    fun index(
+        @RequestParam("recipient-id") recipientId: Long,
+        @RequestParam(required = false, defaultValue = "0") page: Int = 0
+    ): List<ChatMessageDto> {
         val messages = chatApi.searchMessages(
             request = SearchMessageRequest(
                 accountId1 = recipientId,
                 accountId2 = securityContext.currentAccountId(),
-                limit = 50
+                limit = LIMIT,
+                offset = page * LIMIT
             )
         ).messages
         logger.add("message_count", messages.size)
