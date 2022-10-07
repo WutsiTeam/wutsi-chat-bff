@@ -30,7 +30,7 @@
     <klint.version>0.47.0</klint.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
 
-    <wutsi-shared-ui.version>0.0.359</wutsi-shared-ui.version>
+    <wutsi-shared-ui.version>0.0.361</wutsi-shared-ui.version>
     <wutsi-chat.version>0.0.7</wutsi-chat.version>
     <wutsi-rtm.version>0.0.2</wutsi-rtm.version>
   </properties>
