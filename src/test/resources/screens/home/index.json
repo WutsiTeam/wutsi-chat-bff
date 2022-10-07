@@ -27,7 +27,7 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "User 1",
-                    "subCaption": "You:Yo",
+                    "subCaption": "You: Yo",
                     "trailing": {
                       "type": "Text",
                       "attributes": {
@@ -63,7 +63,7 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "User 2",
-                    "subCaption": "Ray:Yo",
+                    "subCaption": "Ray: Yo",
                     "trailing": {
                       "type": "Text",
                       "attributes": {
@@ -99,7 +99,7 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "User 3",
-                    "subCaption": "Ray:Hello World",
+                    "subCaption": "Ray: Hello World",
                     "trailing": {
                       "type": "Text",
                       "attributes": {
