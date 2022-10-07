@@ -3,6 +3,7 @@ package com.wutsi.application.chat.endpoint.home.screen
 import com.wutsi.application.chat.endpoint.AbstractQuery
 import com.wutsi.application.chat.endpoint.Page
 import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shared.ui.Avatar
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Container
@@ -109,6 +110,12 @@ class HomeScreen(
                 if (message.senderId == accountId) recipients[message.recipientId] else recipients[message.senderId]
 
             if (recipient != null && recipient.status == "ACTIVE") {
+                val prefix = if (accountId == message.senderId) {
+                    getText("page.chat.you")
+                } else {
+                    StringUtil.firstName(account.displayName)
+                }
+
                 ListItem(
                     leading = Avatar(model = sharedUIMapper.toAccountModel(recipient), radius = 24.0),
                     trailing = Text(
@@ -117,7 +124,7 @@ class HomeScreen(
                         color = Theme.COLOR_PRIMARY
                     ),
                     caption = recipient.displayName ?: "",
-                    subCaption = message.text.replace('\n', ' ').take(30),
+                    subCaption = "$prefix:" + message.text.replace('\n', ' ').take(30),
                     action = gotoUrl(
                         urlBuilder.build("messages?recipient-id=${recipient.id}")
                     )
