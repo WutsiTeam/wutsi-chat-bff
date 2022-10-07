@@ -4,6 +4,7 @@ import com.wutsi.application.chat.endpoint.AbstractQuery
 import com.wutsi.application.chat.endpoint.Page
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.StringUtil
+import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Chat
@@ -12,9 +13,9 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.WutsiAccountApi
+import com.wutsi.platform.core.tracing.TracingContext
 import org.apache.commons.codec.digest.DigestUtils
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.core.env.Environment
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -24,7 +25,8 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/messages")
 class MessagesScreen(
     private val accountApi: WutsiAccountApi,
-    private val env: Environment,
+    private val tenantProvider: TenantProvider,
+    private val tracingContext: TracingContext,
     @Value("\${wutsi.chat.rtm-url}") private val rtmUrl: String
 ) : AbstractQuery() {
     @PostMapping
@@ -55,6 +57,8 @@ class MessagesScreen(
             child = Chat(
                 roomId = roomId,
                 userId = sender.id.toString(),
+                tenantId = tenantProvider.tenantId().toString(),
+                deviceId = tracingContext.deviceId(),
                 userFirstName = StringUtil.firstName(sender.displayName),
                 userLastName = StringUtil.lastName(sender.displayName),
                 userPictureUrl = sender.pictureUrl,

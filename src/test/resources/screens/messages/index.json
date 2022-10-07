@@ -10,6 +10,8 @@
       "attributes": {
         "userId": "77777",
         "roomId": "837ce30b1ad64954aed2ee40df41d217",
+        "tenantId": "1",
+        "deviceId": "0000-1111",
         "recipientUserId": "11",
         "fetchMessageUrl": "http://localhost:0/messages/fetch?recipient-id=11",
         "rtmUrl": "wss://wutsi-rtm-server-test.herokuapp.com/rtm",
