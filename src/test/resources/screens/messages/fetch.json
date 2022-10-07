@@ -10,7 +10,8 @@
       "firstName": "User",
       "lastName": "77777",
       "imageUrl": "https://www.img.com/77777.png"
-    }
+    },
+    "status": "delivered"
   },
   {
     "id": "B",
@@ -23,7 +24,8 @@
       "firstName": "User",
       "lastName": "1",
       "imageUrl": "https://www.img.com/1.png"
-    }
+    },
+    "status": "delivered"
   },
   {
     "id": "C",
@@ -36,6 +38,7 @@
       "firstName": "User",
       "lastName": "77777",
       "imageUrl": "https://www.img.com/77777.png"
-    }
+    },
+    "status": "delivered"
   }
 ]

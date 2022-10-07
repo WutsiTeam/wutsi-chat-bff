@@ -31,7 +31,8 @@
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
 
     <wutsi-shared-ui.version>0.0.359</wutsi-shared-ui.version>
-    <wutsi-chat.version>0.0.6</wutsi-chat.version>
+    <wutsi-chat.version>0.0.7</wutsi-chat.version>
+    <wutsi-rtm.version>0.0.2</wutsi-rtm.version>
   </properties>
 
   <dependencies>
@@ -39,6 +40,11 @@
       <groupId>com.wutsi.platform.chat</groupId>
       <artifactId>wutsi-chat-sdk-kotlin</artifactId>
       <version>${wutsi-chat.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.wutsi.platform.rtm</groupId>
+      <artifactId>wutsi-rtm-sdk-kotlin</artifactId>
+      <version>${wutsi-rtm.version}</version>
     </dependency>
     <dependency>
       <groupId>com.wutsi.application.shared</groupId>

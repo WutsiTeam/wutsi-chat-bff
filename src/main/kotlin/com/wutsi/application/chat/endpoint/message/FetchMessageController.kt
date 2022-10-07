@@ -9,6 +9,7 @@ import com.wutsi.platform.account.dto.SearchAccountRequest
 import com.wutsi.platform.chat.WutsiChatApi
 import com.wutsi.platform.chat.dto.SearchMessageRequest
 import com.wutsi.platform.core.logging.KVLogger
+import com.wutsi.platform.rtm.model.ChatStatus
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -56,6 +57,7 @@ class FetchMessageController(
                 createdAt = it.timestamp,
                 roomId = recipientId.toString(),
                 text = it.text,
+                status = if (it.received == null) ChatStatus.delivered.name else ChatStatus.sent.name,
                 author = ChatUserDto(
                     id = author?.id.toString(),
                     firstName = author?.displayName?.let { StringUtil.firstName(author.displayName) },

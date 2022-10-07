@@ -6,5 +6,6 @@ data class ChatMessageDto(
     val createdAt: Long = -1,
     val roomId: String = "",
     val text: String = "",
-    val author: ChatUserDto = ChatUserDto()
+    val author: ChatUserDto = ChatUserDto(),
+    val status: String = ""
 )
