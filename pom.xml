@@ -52,6 +52,7 @@
       <version>${wutsi-shared-ui.version}</version>
     </dependency>
 
+
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
@@ -62,6 +63,7 @@
       <artifactId>kotlin-reflect</artifactId>
       <version>${kotlin.version}</version>
     </dependency>
+
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
