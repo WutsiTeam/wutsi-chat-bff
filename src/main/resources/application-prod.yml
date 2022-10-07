@@ -11,6 +11,7 @@ wutsi:
         endpoint-url: "https://ik.imagekit.io/toifevuwjn"
     security:
       api-key: ${API_KEY}
+      verify-token: true
     storage:
       type: aws
       aws:

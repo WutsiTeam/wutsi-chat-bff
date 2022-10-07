@@ -58,6 +58,7 @@ wutsi:
     security:
       type: jwt
       api-key: "bba106b6-418d-11ed-8a4b-169285b9809d"
+      verify-token: false
     stream:
       name: ${wutsi.application.name}
       type: local
