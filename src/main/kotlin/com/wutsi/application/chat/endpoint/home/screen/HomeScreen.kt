@@ -6,7 +6,7 @@ import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shared.ui.Avatar
 import com.wutsi.flutter.sdui.AppBar
-import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
@@ -85,12 +85,14 @@ class HomeScreen(
                 foregroundColor = Theme.COLOR_WHITE,
                 title = getText("page.chat.app-bar.title")
             ),
-            child = Container(
-                child = Flexible(
-                    child = ListView(
-                        separatorColor = Theme.COLOR_DIVIDER,
-                        separator = true,
-                        children = children
+            child = Column(
+                children = listOf(
+                    Flexible(
+                        child = ListView(
+                            separatorColor = Theme.COLOR_DIVIDER,
+                            separator = true,
+                            children = children
+                        )
                     )
                 )
             ),
