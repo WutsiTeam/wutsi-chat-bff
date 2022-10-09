@@ -11,7 +11,7 @@
       "lastName": "77777",
       "imageUrl": "https://www.img.com/77777.png"
     },
-    "status": "delivered"
+    "status": "sent"
   },
   {
     "id": "B",
@@ -25,7 +25,7 @@
       "lastName": "1",
       "imageUrl": "https://www.img.com/1.png"
     },
-    "status": "delivered"
+    "status": "sent"
   },
   {
     "id": "C",
@@ -39,6 +39,6 @@
       "lastName": "77777",
       "imageUrl": "https://www.img.com/77777.png"
     },
-    "status": "delivered"
+    "status": "sent"
   }
 ]

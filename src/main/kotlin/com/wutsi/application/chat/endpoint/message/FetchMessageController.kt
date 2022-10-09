@@ -57,7 +57,7 @@ class FetchMessageController(
                 createdAt = it.timestamp,
                 roomId = recipientId.toString(),
                 text = it.text,
-                status = if (it.received == null) ChatStatus.delivered.name else ChatStatus.sent.name,
+                status = if (it.received == null) ChatStatus.sent.name else ChatStatus.seen.name,
                 author = ChatUserDto(
                     id = author?.id.toString(),
                     firstName = author?.displayName?.let { StringUtil.firstName(author.displayName) },
