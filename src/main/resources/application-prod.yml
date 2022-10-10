@@ -9,6 +9,11 @@ wutsi:
       image-kit:
         origin-url: "https://s3.amazonaws.com/prod-wutsi"
         endpoint-url: "https://ik.imagekit.io/toifevuwjn"
+    messaging:
+      url-shortener:
+        type: bitly
+        bitly:
+          access-token: ${BITLY_ACCESS_TOKEN}
     security:
       api-key: ${API_KEY}
       verify-token: true

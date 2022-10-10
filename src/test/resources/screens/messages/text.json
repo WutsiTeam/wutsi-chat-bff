@@ -1,0 +1,57 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.chat.message",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "Chat",
+      "attributes": {
+        "userId": "77777",
+        "roomId": "837ce30b1ad64954aed2ee40df41d217",
+        "tenantId": "1",
+        "deviceId": "0000-1111",
+        "recipientUserId": "11",
+        "fetchMessageUrl": "http://localhost:0/messages/fetch?recipient-id=11",
+        "rtmUrl": "wss://wutsi-rtm-server-test.herokuapp.com/rtm",
+        "userFirstName": "Ray",
+        "userLastName": "Sponsible",
+        "userPictureUrl": "http://img.com/77777.png",
+        "language": "en",
+        "fontSize": 14.0,
+        "receivedMessageBackground": "#e8e8e8",
+        "receivedMessageTextColor": "#000000",
+        "sentMessageBackground": "#1D7EDF",
+        "sentMessageTextColor": "#FFFFFF",
+        "showUserNames": false,
+        "showUserAvatars": true,
+        "text": "Hello\nhttps://www.google.ca"
+      },
+      "children": []
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Ray Sponsible",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000",
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "ef28"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "route:/~"
+          }
+        }
+      ]
+    },
+    "children": []
+  }
+}

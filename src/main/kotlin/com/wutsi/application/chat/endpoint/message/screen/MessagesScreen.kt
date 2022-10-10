@@ -13,6 +13,7 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.WutsiAccountApi
+import com.wutsi.platform.core.messaging.UrlShortener
 import com.wutsi.platform.core.tracing.TracingContext
 import org.apache.commons.codec.digest.DigestUtils
 import org.springframework.beans.factory.annotation.Value
@@ -27,10 +28,15 @@ class MessagesScreen(
     private val accountApi: WutsiAccountApi,
     private val tenantProvider: TenantProvider,
     private val tracingContext: TracingContext,
+    private val urlShortener: UrlShortener,
     @Value("\${wutsi.chat.rtm-url}") private val rtmUrl: String
 ) : AbstractQuery() {
     @PostMapping
-    fun index(@RequestParam(name = "recipient-id") recipientId: Long): Widget {
+    fun index(
+        @RequestParam(name = "recipient-id") recipientId: Long,
+        @RequestParam(required = false) text: String? = null,
+        @RequestParam(required = false) url: String? = null
+    ): Widget {
         val sender = securityContext.currentAccount()
         val recipient = accountApi.getAccount(recipientId).account
         val roomId = DigestUtils.md5Hex(
@@ -72,8 +78,25 @@ class MessagesScreen(
                 receivedMessageBackground = Theme.COLOR_GRAY_LIGHT,
                 fontSize = Theme.TEXT_SIZE_DEFAULT,
                 showUserNames = false,
-                showUserAvatars = true
+                showUserAvatars = true,
+                text = toText(text, url)
             )
         ).toWidget()
+    }
+
+    private fun toText(text: String?, url: String?): String? {
+        if (text == null && url == null) {
+            return null
+        }
+
+        val buff = java.lang.StringBuilder()
+        text?.let { buff.append(it) }
+        url?.let {
+            if (buff.isNotEmpty()) {
+                buff.append("\n")
+            }
+            buff.append(urlShortener.shorten(it))
+        }
+        return buff.toString()
     }
 }

@@ -19,7 +19,12 @@ internal class MessagesScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun index() {
+    fun messages() {
         assertEndpointEquals("/screens/messages/index.json", url)
+    }
+
+    @Test
+    fun text() {
+        assertEndpointEquals("/screens/messages/text.json", "$url&text=Hello&url=https://www.google.ca")
     }
 }
