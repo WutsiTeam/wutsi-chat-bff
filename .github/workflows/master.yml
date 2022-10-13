@@ -61,6 +61,7 @@ jobs:
           CLOUDAMQP_URL: ${{secrets.CLOUDAMQP_URL_TEST}}
           LOG4J_SLACK_WEBHOOK_URL: ${{secrets.LOG4J_SLACK_WEBHOOK_URL_TEST}}
           BITLY_ACCESS_TOKEN: ${{secrets.BITLY_ACCESS_TOKEN_TEST}}
+          REDIS_URL: ${{secrets.REDIS_URL_TEST}}
           HEROKU_APP: wutsi-chat-bff-test
         run: |
           heroku apps | grep ${HEROKU_APP} && echo 'app: ${HEROKU_APP} exists' ||  heroku apps:create ${HEROKU_APP}
@@ -73,6 +74,7 @@ jobs:
           heroku config:set --app ${HEROKU_APP} LOG4J_SLACK_WEBHOOK_URL=${LOG4J_SLACK_WEBHOOK_URL}
           heroku config:set --app ${HEROKU_APP} BITLY_ACCESS_TOKEN=${BITLY_ACCESS_TOKEN}
           heroku config:set --app ${HEROKU_APP} API_KEY=${API_KEY}
+          heroku config:set --app ${HEROKU_APP} REDIS_URL=${REDIS_URL}
           heroku addons -a ${HEROKU_APP} | grep papertrail && echo 'addon: papertrail exists' ||  heroku addons:create papertrail -a ${HEROKU_APP}
           heroku deploy:jar wutsi-chat-bff.jar --app ${HEROKU_APP}
       - name: Health check
@@ -119,6 +121,7 @@ jobs:
           CLOUDAMQP_URL: ${{secrets.CLOUDAMQP_URL_PROD}}
           LOG4J_SLACK_WEBHOOK_URL: ${{secrets.LOG4J_SLACK_WEBHOOK_URL_PROD}}
           BITLY_ACCESS_TOKEN: ${{secrets.BITLY_ACCESS_TOKEN_PROD}}
+          REDIS_URL: ${{secrets.REDIS_URL_PROD}}
           HEROKU_APP: wutsi-chat-bff-prod
         run: |
           heroku apps | grep ${HEROKU_APP} && echo 'app: ${HEROKU_APP} exists' ||  heroku apps:create ${HEROKU_APP}
@@ -131,6 +134,7 @@ jobs:
           heroku config:set --app ${HEROKU_APP} LOG4J_SLACK_WEBHOOK_URL=${LOG4J_SLACK_WEBHOOK_URL}
           heroku config:set --app ${HEROKU_APP} API_KEY=${API_KEY}
           heroku config:set --app ${HEROKU_APP} BITLY_ACCESS_TOKEN=${BITLY_ACCESS_TOKEN}
+          heroku config:set --app ${HEROKU_APP} REDIS_URL=${REDIS_URL}
           heroku addons -a ${HEROKU_APP} | grep papertrail && echo 'addon: papertrail exists' ||  heroku addons:create papertrail -a ${HEROKU_APP}
           heroku deploy:jar wutsi-chat-bff.jar --app ${HEROKU_APP}
       - name: Health check

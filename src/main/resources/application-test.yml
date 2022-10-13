@@ -16,6 +16,10 @@ wutsi:
     security:
       api-key: ${API_KEY}
       verify-token: true
+      token-blacklist:
+        type: redis
+        redis:
+          url: ${REDIS_URL}
     storage:
       type: aws
       aws:
